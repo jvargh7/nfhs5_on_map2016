@@ -11,6 +11,10 @@ shape_df <-  readOGR(paste0(path_shape_files),"sdr_subnational_boundaries2")
 
 
 shape_df@data %>% 
+  mutate(REGCODE = case_when(REGNAME == "Hamirpur" & OTHREGNA == "Uttar Pradesh" ~ 168,
+                             TRUE ~ REGCODE)) %>% 
   saveRDS(.,paste0(path_shape_files,"/sdr_subnational_boundaries2_data.RDS"))
 shape_df@data %>% 
+  mutate(REGCODE = case_when(REGNAME == "Hamirpur" & OTHREGNA == "Uttar Pradesh" ~ 168,
+                             TRUE ~ REGCODE)) %>% 
   write.csv(.,paste0(path_shape_files,"/sdr_subnational_boundaries2_data.csv"),row.names = FALSE)

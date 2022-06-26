@@ -13,7 +13,9 @@ shp_nfhs_2016 <- map2_dfr(psu_2016,1:640,
                             
                             x_df <- shp_nfhs[x,c("DHSCLUST","ADM1NAME","DHSREGCO","DHSREGNA","URBAN_RURA")];
                             x_df$geometry <- NULL;
-                            y_df <- shp_2016[y,c("REGNAME","REGCODE","OTHREGNA","OTHREGCO")];
+                            y_df <- shp_2016[y,c("REGNAME","REGCODE","OTHREGNA","OTHREGCO")] %>% 
+                              mutate(REGCODE = case_when(REGNAME == "Hamirpur" & OTHREGNA == "Uttar Pradesh" ~ 168,
+                                                         TRUE ~ REGCODE));
                             y_df$geometry <- NULL;
                             bind_cols(x_df,y_df) %>% 
                               return(.)
@@ -33,6 +35,12 @@ missing_shp_nfhs <- anti_join(shp_nfhs %>%
 
 
 missing_shp_nfhs$geometry <- NULL
+# shp_2016$geometry <- NULL
+# sdistri_ids <- shp_2016$REGCODE
+# intersected_ids <- bind_rows(shp_nfhs_2016,
+#                              missing_shp_nfhs)$REGCODE %>% unique(.)
+# 
+# sdistri_ids[!sdistri_ids%in% intersected_ids]
 
 bind_rows(shp_nfhs_2016,
           missing_shp_nfhs) %>% 
