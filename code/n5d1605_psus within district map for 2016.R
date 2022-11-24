@@ -5,8 +5,18 @@ shp_nfhs <-  read_sf(paste0(path_nfhs))
 
 
 path_2016 <- "C:/Cloud/OneDrive - Emory University/data/NFHS/NFHS4 Factsheets/maps/sdr_subnational_boundaries_2020-12-28/shps/sdr_subnational_boundaries2.shp"
-shp_2016 <-  read_sf(paste0(path_2016))
+shp_2016 <-  read_sf(paste0(path_2016)) %>% st_make_valid()
 psu_2016 <- st_intersects(shp_2016,shp_nfhs)
+
+shp_2016$geometry <- NULL
+shp_2016 <- shp_2016 %>% 
+  mutate(REGCODE = case_when(REGNAME == "Hamirpur" & OTHREGNA == "Uttar Pradesh" ~ 168,
+                             TRUE ~ REGCODE),
+         OTHREGCO = case_when(OTHREGNA == "Himanchal Pradesh" ~ 13,
+                              TRUE ~ OTHREGCO),
+         OTHREGNA =  case_when(OTHREGNA == "Himanchal Pradesh" ~ "Himachal Pradesh",
+                               TRUE ~ OTHREGNA))
+
 
 shp_nfhs_2016 <- map2_dfr(psu_2016,1:640,
                           function(x,y){
@@ -16,7 +26,7 @@ shp_nfhs_2016 <- map2_dfr(psu_2016,1:640,
                             y_df <- shp_2016[y,c("REGNAME","REGCODE","OTHREGNA","OTHREGCO")] %>% 
                               mutate(REGCODE = case_when(REGNAME == "Hamirpur" & OTHREGNA == "Uttar Pradesh" ~ 168,
                                                          TRUE ~ REGCODE));
-                            y_df$geometry <- NULL;
+                            # y_df$geometry <- NULL;
                             bind_cols(x_df,y_df) %>% 
                               return(.)
                             
