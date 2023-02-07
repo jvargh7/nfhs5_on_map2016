@@ -4,7 +4,7 @@ path_nfhs <- "C:/Cloud/OneDrive - Emory University/data/dhs_program/IA/IAGE7AFL"
 shp_nfhs <-  read_sf(paste0(path_nfhs))
 
 path_2020 <- "C:/Cloud/OneDrive - Emory University/data/India Shapefiles/india_shp_2020-master/district"
-shp_2020 <-  read_sf(paste0(path_2020))
+shp_2020 <-  readRDS(paste0(path_india_shapefiles,"/cleaned/d2020.RDS"))
 psu_2020 <- st_intersects(shp_2020,shp_nfhs)
 
 shp_nfhs_2020 <- map2_dfr(psu_2020,1:735,

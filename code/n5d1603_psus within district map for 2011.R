@@ -3,10 +3,11 @@ library(sf)
 path_nfhs <- "C:/Cloud/OneDrive - Emory University/data/dhs_program/IA/IAGE7AFL"
 shp_nfhs <-  read_sf(paste0(path_nfhs))
 
-path_2011 <- "C:/Cloud/OneDrive - Emory University/data/maps-master/Districts/Census_2011"
-shp_2011 <-  read_sf(paste0(path_2011))
+# path_2011 <- "C:/Cloud/OneDrive - Emory University/data/maps-master/Districts/Census_2011"
+shp_2011 <-  readRDS(paste0(path_india_shapefiles,"/cleaned/dcensus2011.RDS"))
 psu_2011 <- st_intersects(shp_2011,shp_nfhs)
 
+# Specification is intersected district and row number
 shp_nfhs_2011 <- map2_dfr(psu_2011,1:641,
                           function(x,y){
                             
@@ -37,3 +38,4 @@ bind_rows(shp_nfhs_2011,
           missing_shp_nfhs) %>% 
 
 write_csv(.,paste0("data/psu_on_map2011.csv"))
+

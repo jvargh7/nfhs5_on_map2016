@@ -3,8 +3,8 @@ library(sf)
 path_nfhs <- "C:/Cloud/OneDrive - Emory University/data/dhs_program/IA/IAGE7AFL"
 shp_nfhs <-  read_sf(paste0(path_nfhs))
 
-path_2018 <- "C:/Cloud/OneDrive - Emory University/data/India Shapefiles/INDIA_2018_DISTRICTS-master"
-shp_2018 <-  read_sf(paste0(path_2018))
+# path_2018 <- "C:/Cloud/OneDrive - Emory University/data/India Shapefiles/INDIA_2018_DISTRICTS-master"
+shp_2018 <-  readRDS(paste0(path_india_shapefiles,"/cleaned/d2018.RDS"))
 psu_2018 <- st_intersects(shp_2018,shp_nfhs)
 
 shp_nfhs_2018 <- map2_dfr(psu_2018,1:719,
