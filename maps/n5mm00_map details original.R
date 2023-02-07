@@ -1,5 +1,5 @@
 
-cleaned_list <- imap(list_of_paths,
+original_list <- imap(list_of_paths,
                     function(l_p,name){
                       
                       shape_df <-  readOGR(paste0(path_india_shapefiles,l_p));
@@ -16,7 +16,7 @@ cleaned_list <- imap(list_of_paths,
 
 
 library(openxlsx)
-names(cleaned_list) = names(list_of_paths)
-write.xlsx(cleaned_list, file = paste0("maps/map details.xlsx"))
+names(original_list) = names(list_of_paths)
+write.xlsx(original_list, file = paste0("maps/map details original.xlsx"))
 
 
