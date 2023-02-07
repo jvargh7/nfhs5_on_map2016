@@ -1,5 +1,7 @@
 
 list_of_cleaned = list.files(paste0(path_india_shapefiles,"/cleaned"))
+list_of_cleaned = list_of_cleaned[!str_detect(string =list_of_cleaned,pattern="_sp")]
+
 
 cleaned_list <- imap(list_of_cleaned,
                       function(l_c,name){
