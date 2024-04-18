@@ -5,9 +5,11 @@ original_list <- imap(list_of_paths,
                       shape_df <-  readOGR(paste0(path_india_shapefiles,l_p));
                       
                       tmap_options(check.and.fix = TRUE)
-                      (tm_shape(shape_df,ext=1.2) + 
-                          tm_borders()) %>% 
-                        tmap_save(.,paste0("maps/",name,".png"),height=2300/300)
+                      
+                      try((tm_shape(shape_df,ext=1.2) + 
+                             tm_borders()) %>% 
+                            tmap_save(.,paste0("maps/",name,".png"),height=2300/300))
+                      
                       
                       shape_df@data %>% 
                         return(.)

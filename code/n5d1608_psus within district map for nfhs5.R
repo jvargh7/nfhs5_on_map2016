@@ -49,3 +49,9 @@ bind_rows(shp_nfhs_nfhs5,
           missing_shp_nfhs) %>% 
   
   write_csv(.,paste0("data/psu_on_mapnfhs5.csv"))
+
+bind_rows(shp_nfhs_nfhs5,
+          missing_shp_nfhs) %>% 
+  group_by(DHSREGCO) %>% 
+  tally() %>% 
+  View()

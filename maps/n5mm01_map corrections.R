@@ -63,6 +63,14 @@ snfhs3 = read_sf(paste0(path_india_shapefiles,list_of_paths["snfhs3"])) %>% st_m
 
 dcensus2001 = read_sf(paste0(path_india_shapefiles,list_of_paths["dcensus2001"])) %>% st_make_valid()
 
+dgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["dgoi2023"])) %>% st_make_valid()
+dhqgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["dhqgoi2023"])) %>% st_make_valid()
+twngoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["twngoi2023"])) %>% st_make_valid()
+sgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["sgoi2023"])) %>% st_make_valid()
+shqgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["shqgoi2023"])) %>% st_make_valid()
+sdgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["sdgoi2023"])) %>% st_make_valid()
+
+
 
 
 saveRDS(d2020,paste0(path_india_shapefiles,"cleaned/d2020.RDS"))
@@ -74,6 +82,16 @@ saveRDS(snfhs4,paste0(path_india_shapefiles,"cleaned/snfhs4.RDS"))
 saveRDS(dcensus2011,paste0(path_india_shapefiles,"cleaned/dcensus2011.RDS"))
 saveRDS(snfhs3,paste0(path_india_shapefiles,"cleaned/snfhs3.RDS"))
 saveRDS(dcensus2001,paste0(path_india_shapefiles,"cleaned/dcensus2001.RDS"))
+
+saveRDS(dgoi2023,paste0(path_india_shapefiles,"cleaned/dgoi2023.RDS"))
+saveRDS(dhqgoi2023,paste0(path_india_shapefiles,"cleaned/dhqgoi2023.RDS"))
+saveRDS(twngoi2023,paste0(path_india_shapefiles,"cleaned/twngoi2023.RDS"))
+saveRDS(sgoi2023,paste0(path_india_shapefiles,"cleaned/sgoi2023.RDS"))
+saveRDS(shqgoi2023,paste0(path_india_shapefiles,"cleaned/shqgoi2023.RDS"))
+saveRDS(sdgoi2023,paste0(path_india_shapefiles,"cleaned/sdgoi2023.RDS"))
+
+
+
 
 saveRDS(d2020_sp,paste0(path_india_shapefiles,"cleaned/d2020_sp.RDS"))
 saveRDS(d2018_sp,paste0(path_india_shapefiles,"cleaned/d2018_sp.RDS"))

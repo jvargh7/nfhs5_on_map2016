@@ -35,6 +35,21 @@ list_of_paths = list(
   snfhs3 = "original/IASHP52/shps/sdr_subnational_boundaries.shp",
   
   #District map for Census 2001
-  dcensus2001 = "original/maps-master/Districts/Census_2001/2001_Dist.shp"
+  dcensus2001 = "original/maps-master/Districts/Census_2001/2001_Dist.shp",
+  
+  # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
+  dgoi2023 = "original/Administrative Boundary Database/DISTRICT_BOUNDARY.shp",
+  # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
+  dhqgoi2023 = "original/Administrative Boundary Database/DISTRICT_HQ.shp",
+  # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
+  twngoi2023 = "original/Administrative Boundary Database/MAJOR_TOWNS.shp",
+  # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
+  sgoi2023 = "original/Administrative Boundary Database/STATE_BOUNDARY.shp",
+  # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
+  shqgoi2023 = "original/Administrative Boundary Database/STATE_HQ.shp",
+  # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
+  sdgoi2023 = "original/Administrative Boundary Database/SUBDISTRICT_BOUNDARY.shp"
+  
+  
   
 )
