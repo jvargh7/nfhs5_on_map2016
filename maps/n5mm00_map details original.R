@@ -2,7 +2,8 @@
 original_list <- imap(list_of_paths,
                     function(l_p,name){
                       
-                      shape_df <-  readOGR(paste0(path_india_shapefiles,l_p));
+                      shape_df <-  read_sf(paste0(path_india_shapefiles,l_p)) %>% 
+                        st_make_valid();
                       
                       tmap_options(check.and.fix = TRUE)
                       
@@ -10,8 +11,9 @@ original_list <- imap(list_of_paths,
                              tm_borders()) %>% 
                             tmap_save(.,paste0("maps/",name,".png"),height=2300/300))
                       
+                      shape_df$geometry = NULL
                       
-                      shape_df@data %>% 
+                      shape_df %>% 
                         return(.)
                       
                     })

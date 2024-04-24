@@ -32,6 +32,7 @@ d2018 = read_sf(paste0(path_india_shapefiles,list_of_paths["d2018"])) %>% st_mak
 d2018_sp = rgdal::readOGR(paste0(path_india_shapefiles,list_of_paths["d2018"]))
 
 
+
 smapsmaster = read_sf(paste0(path_india_shapefiles,list_of_paths["smapsmaster"])) %>% st_make_valid()
 smapsmaster_sp = rgdal::readOGR(paste0(path_india_shapefiles,list_of_paths["smapsmaster"]))
 
@@ -70,8 +71,24 @@ sgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["sgoi2023"])) %>% 
 shqgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["shqgoi2023"])) %>% st_make_valid()
 sdgoi2023 = read_sf(paste0(path_india_shapefiles,list_of_paths["sdgoi2023"])) %>% st_make_valid()
 
+dindianshapefiles = read_sf(paste0(path_india_shapefiles,list_of_paths["dindianshapefiles"])) %>% st_make_valid() %>% 
+  mutate(dtname = case_when(dtname == "Anantpur" & stname == "ANDHRA PRADESH" ~ "Anantapur",
+                            dtname == "Sri Potti Sriramulu Nell*" & stname == "ANDHRA PRADESH" ~ "SPSR Nellore",
+                            dtname == "Visakhapatnam" & stname == "ANDHRA PRADESH" ~ "Visakhapatanam",
+                            dtname == "Sri Sathya sai" & stname == "ANDHRA PRADESH" ~ "Sri Sathya Sai",
+                            TRUE ~ dtname
+                            ))
+sindianshapefiles = read_sf(paste0(path_india_shapefiles,list_of_paths["sindianshapefiles"])) %>% st_make_valid()
+sdindianshapefiles = read_sf(paste0(path_india_shapefiles,list_of_paths["sdindianshapefiles"])) %>% st_make_valid() %>% 
+  mutate(dtname = case_when(
+                            dtname == "Sri Potti Sriramulu Nellore" & stname == "ANDHRA PRADESH" ~ "SPSR Nellore",
+                            dtname == "Visakhapatnam" & stname == "ANDHRA PRADESH" ~ "Visakhapatanam",
+                            # dtname == "Sri Sathya sai" & stname == "ANDHRA PRADESH" ~ "Sri Sathya Sai",
+                            TRUE ~ dtname
+  ))
 
-
+dindianshapefiles_sp = rgdal::readOGR(paste0(path_india_shapefiles,list_of_paths["dindianshapefiles"]))
+sdindianshapefiles_sp = rgdal::readOGR(paste0(path_india_shapefiles,list_of_paths["sdindianshapefiles"]))
 
 saveRDS(d2020,paste0(path_india_shapefiles,"cleaned/d2020.RDS"))
 saveRDS(snfhs5,paste0(path_india_shapefiles,"cleaned/snfhs5.RDS"))
@@ -90,7 +107,12 @@ saveRDS(sgoi2023,paste0(path_india_shapefiles,"cleaned/sgoi2023.RDS"))
 saveRDS(shqgoi2023,paste0(path_india_shapefiles,"cleaned/shqgoi2023.RDS"))
 saveRDS(sdgoi2023,paste0(path_india_shapefiles,"cleaned/sdgoi2023.RDS"))
 
+saveRDS(dindianshapefiles,paste0(path_india_shapefiles,"cleaned/dindianshapefiles.RDS"))
+saveRDS(sindianshapefiles,paste0(path_india_shapefiles,"cleaned/sindianshapefiles.RDS"))
+saveRDS(sdindianshapefiles,paste0(path_india_shapefiles,"cleaned/sdindianshapefiles.RDS"))
 
+saveRDS(dindianshapefiles_sp,paste0(path_india_shapefiles,"cleaned/dindianshapefiles_sp.RDS"))
+saveRDS(sdindianshapefiles_sp,paste0(path_india_shapefiles,"cleaned/sdindianshapefiles_sp.RDS"))
 
 
 saveRDS(d2020_sp,paste0(path_india_shapefiles,"cleaned/d2020_sp.RDS"))

@@ -48,8 +48,11 @@ list_of_paths = list(
   # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
   shqgoi2023 = "original/Administrative Boundary Database/STATE_HQ.shp",
   # Downloaded from Survey of India Onlinemaps portal(Onlinemaps)
-  sdgoi2023 = "original/Administrative Boundary Database/SUBDISTRICT_BOUNDARY.shp"
+  sdgoi2023 = "original/Administrative Boundary Database/SUBDISTRICT_BOUNDARY.shp",
   
-  
-  
+  # Downloaded from https://github.com/datta07/INDIAN-SHAPEFILES
+  dindianshapefiles = "original/INDIAN-SHAPEFILES-master/INDIA/INDIA_DISTRICTS.geojson",
+  sindianshapefiles = "original/INDIAN-SHAPEFILES-master/INDIA/INDIA_STATES.geojson",
+  sdindianshapefiles = "original/INDIAN-SHAPEFILES-master/INDIA/INDIAN_SUB_DISTRICTS.geojson"
+
 )
